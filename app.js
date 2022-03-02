@@ -12,6 +12,7 @@ const searchButton = () => {
 const displayPhones = (phones) => {
     // console.log(phones);
     const cardContainer = document.getElementById('card-container')
+    cardContainer.innerHTML = '';
     phones.forEach(phone => {
         console.log(phone);
         
@@ -32,7 +33,9 @@ const displayPhones = (phones) => {
         cardContainer.appendChild(div)
         
     });
+    
 }
+
 const cardDetails = (card) => {
     console.log(card);
 }

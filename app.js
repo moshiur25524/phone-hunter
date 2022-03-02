@@ -3,19 +3,23 @@ const searchButton = () => {
     const error = document.getElementById('error')
     const searchText = searchField.value;
     searchField.value = '';
+    
     // phoneDetail.innerHTML = '';
     error.innerText = ''
-    if(searchText == 0){
-      error.innerText = 'Please Search any phone';
+    if(searchText == ''){
+      error.innerText = 'Please Search phone !!!';
     }
-    // else if(searchText !== 'iphone'|| searchText !== 'samsung' || searchText !== 'oppo'){
-    //   error.innerText = 'Your have to choose Iphone, Samsung, Oppo'
-    // }
-    else{
-      const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+    else if(searchText == 'iphone'|| searchText == 'samsung' || searchText == 'oppo'){
+    
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}` 
     fetch(url)
     .then(res => res.json())
     .then(data => displayPhones(data.data))
+    
+    }
+    else{
+    error.innerText = 'Your have to choose Iphone, Samsung, Oppo'
+    
     }
     
 }
@@ -70,8 +74,8 @@ const displayPhoneDetail = phone => {
   div1.innerHTML = `
   <img src="${phone.image}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">${phone.slug}</h5>
-    <h5 class="card-title">${phone.releaseDate}</h5>
+    <p class="card-title">${phone.slug}</p>
+    <p class="card-title">${phone.releaseDate}</p>
     <h3 class="card-title">Basic Feature</h3>
     <p class="card-text">Chip Set : ${phone.mainFeatures.chipSet}</p>
     <p class="card-text">Display Size : ${phone.mainFeatures.displaySize}</p>
@@ -83,16 +87,16 @@ const displayPhoneDetail = phone => {
   div2.innerHTML = `
   
   <div class="card-body">
-    <h3 class="card-title">Explore More</h3>
+    <h3 class="card-title text-center">Explore More</h3>
     <h5 class="card-title">sensors</h5>
-    <h5 class="card-title">${phone.releaseDate.sensors[0]}</h5>
-    <h5 class="card-title">${phone.releaseDate.sensors[1]}</h5>
-    <h5 class="card-title">${phone.releaseDate.sensors[2]}</h5>
-    <h5 class="card-title">${phone.releaseDate.sensors[3]}</h5>
-    <h3 class="card-title">Others</h3>
-    <p class="card-text">Chip Set : ${phone.mainFeatures.chipSet}</p>
-    <p class="card-text">Display Size : ${phone.mainFeatures.displaySize}</p>
-    <p class="card-text">Memory : ${phone.mainFeatures.memory}</p>
+    <span class="card-text"> ${phone.mainFeatures.sensors[0]}</span>
+    <span class="card-text">, ${phone.mainFeatures.sensors[1]}</span>
+    <span class="card-text">, ${phone.mainFeatures.sensors[2]}</span>
+    <span class="card-text">, ${phone.mainFeatures.sensors[4]}</span>
+    <h5 class="card-title">Others</h5>
+    <p class="card-text">GPS : ${phone.others.GPS}</p>
+    <p class="card-text">USB : ${phone.others.USB}</p>
+    <p class="card-text">WLAN : ${phone.others.WLAN}</p>
   </div>
   `
   phoneDetail.appendChild(div1);

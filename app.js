@@ -3,6 +3,7 @@ const searchButton = () => {
     const error = document.getElementById('error')
     const searchText = searchField.value;
     searchField.value = '';
+    // phoneDetail.innerHTML = '';
     error.innerText = ''
     if(searchText == 0){
       error.innerText = 'Please Search any phone';
@@ -59,10 +60,14 @@ const loadPhoneDetail = id => {
 const displayPhoneDetail = phone => {
   console.log(phone);
   const phoneDetail = document.getElementById('phone-details')
+  const MorePhoneDetail = document.getElementById('extra-more')
   phoneDetail.innerHTML = '';
-  const div = document.createElement('div')
-  div.classList.add('card');
-  div.innerHTML = `
+  MorePhoneDetail.innerHTML = '';
+  const div1 = document.createElement('div')
+  const div2 = document.createElement('div')
+  div1.classList.add('card');
+  div2.classList.add('card');
+  div1.innerHTML = `
   <img src="${phone.image}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">${phone.slug}</h5>
@@ -71,7 +76,55 @@ const displayPhoneDetail = phone => {
     <p class="card-text">Chip Set : ${phone.mainFeatures.chipSet}</p>
     <p class="card-text">Display Size : ${phone.mainFeatures.displaySize}</p>
     <p class="card-text">Memory : ${phone.mainFeatures.memory}</p>
+    <p class="card-text">Storage : ${phone.mainFeatures.storage}</p>
   </div>
   `
-  phoneDetail.appendChild(div);
+  
+  div2.innerHTML = `
+  
+  <div class="card-body">
+    <h3 class="card-title">Explore More</h3>
+    <h5 class="card-title">sensors</h5>
+    <h5 class="card-title">${phone.releaseDate.sensors[0]}</h5>
+    <h5 class="card-title">${phone.releaseDate.sensors[1]}</h5>
+    <h5 class="card-title">${phone.releaseDate.sensors[2]}</h5>
+    <h5 class="card-title">${phone.releaseDate.sensors[3]}</h5>
+    <h3 class="card-title">Others</h3>
+    <p class="card-text">Chip Set : ${phone.mainFeatures.chipSet}</p>
+    <p class="card-text">Display Size : ${phone.mainFeatures.displaySize}</p>
+    <p class="card-text">Memory : ${phone.mainFeatures.memory}</p>
+  </div>
+  `
+  phoneDetail.appendChild(div1);
+  MorePhoneDetail.appendChild(div2);
 }
+
+// More phone Detail
+
+// const loadPhoneMoreDetail = id => {
+//   console.log(id);
+//   const url = `https://openapi.programming-hero.com/api/phone/${id}`
+//   fetch(url)
+//   .then(res => res.json())
+//   .then(data =>displayPhoneMoreDetail(data.data))
+// }
+
+// const displayPhoneMoreDetail = phone => {
+//   console.log(phone);
+//   const phoneDetail = document.getElementById('extra-more')
+//   phoneDetail.innerHTML = '';
+//   const div = document.createElement('div')
+//   div.classList.add('card');
+//   div.innerHTML = `
+//   <img src="${phone.image}" class="card-img-top" alt="...">
+//   <div class="card-body">
+//     <h5 class="card-title">${phone.slug}</h5>
+//     <h5 class="card-title">${phone.releaseDate}</h5>
+//     <h3 class="card-title">Basic Feature</h3>
+//     <p class="card-text">Chip Set : ${phone.mainFeatures.chipSet}</p>
+//     <p class="card-text">Display Size : ${phone.mainFeatures.displaySize}</p>
+//     <p class="card-text">Memory : ${phone.mainFeatures.memory}</p>
+//   </div>
+//   `
+//   phoneDetail.appendChild(div);
+// }

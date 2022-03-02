@@ -11,9 +11,10 @@ const searchButton = () => {
 
 const displayPhones = (phones) => {
     // console.log(phones);
+    const first20phone = phones.slice(0, 20)
     const cardContainer = document.getElementById('card-container')
     cardContainer.innerHTML = '';
-    phones.forEach(phone => {
+    first20phone.forEach(phone => {
         console.log(phone);
         
         const div =  document.createElement('div')
